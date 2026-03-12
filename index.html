@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RL Trading Simulator</title>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .upload-status { transition: opacity 0.4s ease; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <h1>RL Trading Simulator</h1>
+        </div>
+        <p class="subtitle">Train a reinforcement learning agent to trade stocks using Q-Learning</p>
+        <div class="hero-badges">
+          <span class="badge badge-glow">AI-Powered Decisions</span>
+          <span class="badge">Guided Workflow</span>
+          <span class="badge">Interactive Visuals</span>
+        </div>
+        <div class="hero-cta">
+          <button class="hero-button primary" type="button" data-scroll-target="#upload-tab">Get Started</button>
+          <a class="hero-button ghost" href="#results-tab" data-scroll-target="#results-tab">View Latest Results</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container">
+      <section class="overview-grid" aria-label="Why you'll love this UI">
+        <article class="overview-card">
+          <div class="overview-card-top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M7 18v-6a5 5 0 0 1 10 0v6"/>
+              <path d="M3 14h4m10 0h4"/>
+            </svg>
+            <span class="chip positive">Intuitive</span>
+          </div>
+          <h3>Guided Trading Journey</h3>
+          <p>Move from data upload to evaluation with a clearly marked pipeline designed to keep you focused.</p>
+        </article>
+        <article class="overview-card">
+          <div class="overview-card-top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l3 3"/>
+            </svg>
+            <span class="chip">Real-time</span>
+          </div>
+          <h3>Live Progress Feedback</h3>
+          <p>Track episode completion, monitor status, and never miss a beat with responsive progress visuals.</p>
+        </article>
+        <article class="overview-card">
+          <div class="overview-card-top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16v16H4z"/>
+              <path d="M4 10h16"/>
+              <path d="M10 10v10"/>
+            </svg>
+            <span class="chip">Insightful</span>
+          </div>
+          <h3>Beautiful Performance Charts</h3>
+          <p>Visualize portfolio growth with smooth charts and export models with a single click.</p>
+        </article>
+      </section>
+      <div class="pipeline-card">
+        <div class="card-header">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+            <path d="M13 13l6 6"/>
+          </svg>
+          <div>
+            <h2>Trading Agent Training Pipeline</h2>
+            <p>Upload your data, configure parameters, train your agent, and analyze results</p>
+          </div>
+        </div>
+        <div class="pipeline-stages" aria-label="Pipeline progress">
+          <div class="stage active" data-stage="upload">
+            <span class="stage-index">1</span>
+            <div class="stage-copy">
+              <p class="stage-title">Upload</p>
+              <p class="stage-subtitle">Import your CSV market data</p>
+            </div>
+          </div>
+          <div class="stage" data-stage="configure">
+            <span class="stage-index">2</span>
+            <div class="stage-copy">
+              <p class="stage-title">Configure</p>
+              <p class="stage-subtitle">Fine-tune learning parameters</p>
+            </div>
+          </div>
+          <div class="stage" data-stage="training">
+            <span class="stage-index">3</span>
+            <div class="stage-copy">
+              <p class="stage-title">Training</p>
+              <p class="stage-subtitle">Watch the agent learn</p>
+            </div>
+          </div>
+          <div class="stage" data-stage="results">
+            <span class="stage-index">4</span>
+            <div class="stage-copy">
+              <p class="stage-title">Results</p>
+              <p class="stage-subtitle">Review performance insights</p>
+            </div>
+          </div>
+          <span class="stage-progress"></span>
+        </div>
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="upload">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7,10 12,15 17,10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Upload Data
+          </button>
+          <button class="tab-btn" data-tab="configure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6"/>
+              <path d="m18.5 5.5-4.24 4.24M9.74 14.76 5.5 18.5"/>
+              <path d="m18.5 18.5-4.24-4.24M9.74 9.24 5.5 5.5"/>
+            </svg>
+            Configure
+          </button>
+          <button class="tab-btn" data-tab="training">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            Training
+          </button>
+          <button class="tab-btn" data-tab="results">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+            </svg>
+            Results
+          </button>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="upload-tab">
+            <div class="upload-section">
+              <div class="upload-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7,10 12,15 17,10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <div>
+                  <h3>Upload Historical Stock Data</h3>
+                  <p>Upload a CSV file containing historical stock data with at least a "Close" column</p>
+                </div>
+              </div>
+              <div class="upload-zone" id="upload-zone">
+                <div class="upload-content">
+                  <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17,8 12,3 7,8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  <p class="upload-text">Drop your CSV file here, or click to browse</p>
+                  <p class="upload-subtext">Supports CSV files up to 10MB</p>
+                  <button class="choose-file-btn" type="button">Choose File</button>
+                </div>
+                <input type="file" id="file-input" accept=".csv" hidden>
+              </div>
+              <div class="upload-status" id="upload-status" style="display: none;"></div>
+              <div class="format-requirements">
+                <h4>CSV Format Requirements:</h4>
+                <ul>
+                  <li>• Must contain a "Close" column with stock prices</li>
+                  <li>• Optional: Date, Open, High, Low, Volume columns</li>
+                  <li>• Data should be in chronological order (oldest to newest)</li>
+                  <li>• Example: Date,Open,High,Low,Close,Volume</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="configure-tab">
+            <div class="config-section">
+              <div class="config-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 1v6m0 6v6"/>
+                  <path d="m18.5 5.5-4.24 4.24M9.74 14.76 5.5 18.5"/>
+                  <path d="m18.5 18.5-4.24-4.24M9.74 9.24 5.5 5.5"/>
+                </svg>
+                <div>
+                  <h3>Configure Training Parameters</h3>
+                  <p>Set up the Q-Learning parameters for your trading agent</p>
+                </div>
+              </div>
+              <form class="config-form" id="config-form">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="initial-balance">Initial Balance ($)</label>
+                    <input type="number" id="initial-balance" value="10000" min="100" step="50">
+                  </div>
+                  <div class="form-group">
+                    <label for="episodes">Episodes</label>
+                    <input type="number" id="episodes" value="1000" min="10" step="10">
+                  </div>
+                  <div class="form-group">
+                    <label for="learning-rate">Learning Rate</label>
+                    <input type="number" id="learning-rate" value="0.1" min="0.001" max="1" step="0.001">
+                  </div>
+                  <div class="form-group">
+                    <label for="gamma">Gamma (Discount Factor)</label>
+                    <input type="number" id="gamma" value="0.95" min="0" max="1" step="0.01">
+                  </div>
+                  <div class="form-group">
+                    <label for="epsilon">Epsilon (Exploration Rate)</label>
+                    <input type="number" id="epsilon" value="1.0" min="0" max="1" step="0.01">
+                  </div>
+                  <div class="form-group">
+                    <label for="epsilon-decay">Epsilon Decay</label>
+                    <input type="number" id="epsilon-decay" value="0.995" min="0.9" max="1" step="0.001">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="tab-pane" id="training-tab">
+            <div class="training-section">
+              <div class="training-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <div>
+                  <h3>Training Control</h3>
+                  <p>Start, monitor, and control the training process</p>
+                </div>
+              </div>
+              <div class="training-controls">
+                <button class="btn btn-primary" id="start-training-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                  Start Training
+                </button>
+                <button class="btn btn-secondary" id="stop-training-btn" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="6" y="4" width="4" height="16"/>
+                    <rect x="14" y="4" width="4" height="16"/>
+                  </svg>
+                  Stop Training
+                </button>
+              </div>
+              <div class="training-progress" id="training-progress" style="display: none;">
+                <div class="progress-header">
+                  <h4>Training Progress</h4>
+                  <span class="progress-text" id="progress-text">0%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-details">
+                  <span>Episode: <span id="current-episode">0</span></span>
+                  <span>Status: <span id="training-status">Ready</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="results-tab">
+            <div class="results-section">
+              <div class="results-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                </svg>
+                <div>
+                  <h3>Training Results</h3>
+                  <p>View your agent's performance and download the trained model</p>
+                </div>
+              </div>
+              <div class="results-content" id="results-content">
+                <p class="no-results">No training results available. Complete training to view results.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="insights-section" aria-label="Helpful tips">
+    <div class="container insights-grid">
+      <article class="insight-card">
+        <h3>Pro Tip</h3>
+        <p>Start with fewer episodes to validate your data flow, then scale up training once the pipeline looks solid.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Need Better Visuals?</h3>
+        <p>Switch to the results tab anytime to replay your latest training and export the Q-table snapshot.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Looking for Next Steps?</h3>
+        <p>Explore hyperparameters like epsilon decay to balance exploration and exploitation throughout training.</p>
+      </article>
+    </div>
+  </section>
+  <div class="modal" id="error-modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Error</h3>
+        <button class="modal-close" id="close-error-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="error-message"></p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
